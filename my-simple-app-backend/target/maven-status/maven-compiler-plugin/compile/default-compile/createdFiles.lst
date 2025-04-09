@@ -1,0 +1,3 @@
+com\eedrpra\my_simple_app\MySimpleAppApplication.class
+com\eedrpra\my_simple_app\controller\SimpleController.class
+com\eedrpra\my_simple_app\ServletInitializer.class
