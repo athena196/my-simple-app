@@ -1,0 +1,4 @@
+steps:
+- name: 'alpine'
+  entrypoint: 'echo'
+  args: ['Hello from Cloud Build! Pipeline is working!']
