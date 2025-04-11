@@ -1,4 +1,7 @@
 steps:
-- name: 'alpine'
-  entrypoint: 'echo'
-  args: ['Hello from Cloud Build! Pipeline is working!']
+- name: 'bash'
+  args: ['echo', 'Hello world!']
+logsBucket: 'gs://gcb-logs-quantum-potion-454412-h6'
+serviceAccount: 'projects/quantum-potion-454412-h6/serviceAccounts/101636147662-compute@developer.gserviceaccount.com'
+options:
+  logging: GCS_ONLY
