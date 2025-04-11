@@ -14,7 +14,12 @@ export class HelloComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.http.get("http://eedpra-simple-app-part2.ap-southeast-3.elasticbeanstalk.com/api/hello", { responseType: 'text' })
+    // point towards Elastic Beanstalk DNS
+    //this.http.get("http://eedpra-simple-app-part2.ap-southeast-3.elasticbeanstalk.com/api/hello", { responseType: 'text' })
+    //  .subscribe(res => this.message = res);
+
+    // proven testing for kubernetes using Kubernetes ingress
+    this.http.get("/api/hello", { responseType: 'text' })
       .subscribe(res => this.message = res);
   }
 
