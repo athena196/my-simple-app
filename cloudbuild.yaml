@@ -1,7 +1,7 @@
 steps:
-- name: 'bash'
-  args: ['echo', 'Hello world!']
-logsBucket: 'gs://gcb-logs-quantum-potion-454412-h6'
-serviceAccount: 'projects/quantum-potion-454412-h6/serviceAccounts/101636147662-compute@developer.gserviceaccount.com'
+- name: 'ubuntu'
+  entrypoint: 'bash'
+  args: ['-c', 'echo Hello from Cloud Build!']
+
 options:
-  logging: GCS_ONLY
+  logging: CLOUD_LOGGING_ONLY
