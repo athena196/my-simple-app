@@ -1,0 +1,34 @@
+steps:
+# Build frontend image
+- name: 'gcr.io/cloud-builders/docker'
+  dir: 'frontend'
+  args: ['build', '-t', 'gcr.io/quantum-potion-454412-h6/frontend:latest', '.']
+
+# Push frontend image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/quantum-potion-454412-h6/frontend:latest']
+
+# Build backend image
+- name: 'gcr.io/cloud-builders/docker'
+  dir: 'backend'
+  args: ['build', '-t', 'gcr.io/quantum-potion-454412-h6/backend:latest', '.']
+
+# Push backend image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/quantum-potion-454412-h6/backend:latest']
+
+# Deploy ke GKE (asumsikan kubectl sudah dikonfigurasi)
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+    [
+      'apply',
+      '-f', 'k8s/frontend-deployment.yaml',
+      '-f', 'k8s/backend-deployment.yaml'
+    ]
+  env:
+    - 'CLOUDSDK_COMPUTE_ZONE=asia-southeast2-a'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=standard-public-cluster-1'
+
+images:
+- 'gcr.io/quantum-potion-454412-h6/frontend:latest'
+- 'gcr.io/quantum-potion-454412-h6/backend:latest'
